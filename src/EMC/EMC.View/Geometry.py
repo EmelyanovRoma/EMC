@@ -1,13 +1,13 @@
-from typing import NamedTuple
+#from typing import NamedTuple
 
 
 class GeometryBlock:
-    def __init__(self, NameTMET,PatternidTMET,TypeTMET,Value1TMET,Value2TMET,Value3TMET,Value4TMET,
+    def __init__(self,NameTMET,PatternidTMET,TypeTMET,Value1TMET,Value2TMET,Value3TMET,Value4TMET,
                  NameBMET,PatternidBMET,TypeBMET,Value1BMET,Value2BMET,Value3BMET,Value4BMET,
                  nlev,xwidth,ywidth,xcells2,ycells2,nsubs,eeff,
                  thickness,erel,mrel,eloss,mloss,esignma,nzpart,name):
         #TMET
-        self.__NameTMET   =  NameTMET
+        self.__NameTMET = NameTMET
         self.__PatternidTMET  =   PatternidTMET
         self.__TypeTMET   =   TypeTMET
         self.__Value1TMET =   Value1TMET
@@ -47,37 +47,37 @@ class GeometryBlock:
             self.__thickness = thickness
 
         def Geterel(self):
-                return self.erel
+                return self.__erel
         def Seterel(self, erel):
             self.__erel = erel
 
         def Getmrel(self):
-                return self.mrel
+                return self.__mrel
         def Setmrel(self, mrel):
             self.__mrel = mrel
             
         def Geteloss(self):
-                return self.eloss
+                return self.__eloss
         def Seteloss(self, eloss):
             self.__eloss = eloss
 
         def Getmloss(self):
-                return self.mloss
+                return self.__mloss
         def Setmloss(self, mloss):
             self.__mloss = mloss
 
         def Getesignma(self):
-                return self.esignma
+                return self.__esignma
         def Setesignma(self, esignma):
             self.__esignma = esignma
 
         def Getnzpart(self):
-                return self.nzpart
+                return self.__nzpart
         def Setnzpart(self, nzpart):
             self.__nzpart = nzpart 
 
         def Getname(self):
-                return self.name
+                return self.__name
         def Setname(self, name):
             self.__name = name
         #BOX
@@ -87,32 +87,32 @@ class GeometryBlock:
             self.__nlev = nlev
 
         def Getxwidth(self):
-                return self.xwidth
+                return self.__xwidth
         def Setxwidth(self, xwidth):
             self.__xwidth = xwidth
 
         def Getywidth(self):
-                return self.ywidth
+                return self.__ywidth
         def Setywidth(self, ywidth):
             self.__ywidth = ywidth
             
         def Getxcells2(self):
-                return self.xcells2
+                return self.__xcells2
         def Setxcells2(self, xcells2):
             self.__xcells2 = xcells2
 
         def Getycells2(self):
-                return self.ycells2
+                return self.__ycells2
         def Setycells2(self, ycells2):
             self.__ycells2 = ycells2
 
         def Getnsubs(self):
-                return self.nsubs
+                return self.__nsubs
         def Setnsubs(self, nsubs):
             self.__nsubs = nsubs
 
         def Geteeff(self):
-                return self.eeff
+                return self.__eeff
         def Seteeff(self, eeff):
             self.__eeff = eeff 
         #TMET
@@ -122,32 +122,32 @@ class GeometryBlock:
             self.__NameTMET = NameTMET
 
         def GetPatternidTMET(self):
-                return self.PatternidTMET
+                return self.__PatternidTMET
         def SetPatternidTMET(self, PatternidTMET):
             self.__PatternidTMET = PatternidTMET
 
         def GetTypeTMET(self):
-                return self.TypeTMET
+                return self.__TypeTMET
         def SetTypeTMET(self, TypeTMET):
             self.__TypeTMET = TypeTMET
             
         def GetValue1TMET(self):
-                return self.Value1TMET
+                return self.__Value1TMET
         def SetValue1TMET(self, Value1TMET):
             self.__Value1TMET = Value1TMET
 
         def GetValue2TMET(self):
-                return self.Value2TMET
+                return self.__Value2TMET
         def SetValue2TMET(self, Value2TMET):
-            self.__Value2TMET = Value2TMET
+            self.j__Value2TMET = Value2TMET
 
         def GetValue3TMET(self):
-                return self.Value3TMET
+                return self.__Value3TMET
         def SetValue3TMET(self, Value3TMET):
             self.__Value3TMET = Value3TMET
 
         def GetValue4TMET(self):
-                return self.Value4TMET
+                return self.__Value4TMET
         def SetValue4TMET(self, Value4TMET):
             self.__Value4TMET = Value4TMET 
 
@@ -158,31 +158,31 @@ class GeometryBlock:
             self.__NameBMET = NameBMET
 
         def GetPatternidBMET(self):
-                return self.PatternidBMET
+                return self.__PatternidBMET
         def SetPatternidBMET(self, PatternidBMET):
             self.__PatternidBMET = PatternidBMET
 
         def GetTypeBMET(self):
-                return self.TypeBMET
+                return self.__TypeBMET
         def SetTypeBMET(self, TypeBMET):
             self.__TypeBMET = TypeBMET
             
         def GetValue1BMET(self):
-                return self.Value1BMET
+                return self.__Value1BMET
         def SetValue1BMET(self, Value1BMET):
             self.__Value1BMET = Value1BMET
 
         def GetValue2BMET(self):
-                return self.Value2BMET
+                return self.__Value2BMET
         def SetValue2BMET(self, Value2BMET):
             self.__Value2BMET = Value2BMET
 
         def GetValue3BMET(self):
-                return self.Value3BMET
+                return self.__Value3BMET
         def SetValue3BMET(self, Value3BMET):
             self.__Value3BMET = Value3BMET
 
         def GetValue4BMET(self):
-                return self.Value4BMET
+                return self.__Value4BMET
         def SetValue4BMET(self, Value4BMET):
             self.__Value4BMET = Value4BMET
