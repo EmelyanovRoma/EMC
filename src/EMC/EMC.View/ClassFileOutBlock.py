@@ -1,5 +1,8 @@
-class my_class(object):
-    pass
+class FileOutBlock(object):
+    def __init__():
+        sel.value
+    
+    
 
 
 
