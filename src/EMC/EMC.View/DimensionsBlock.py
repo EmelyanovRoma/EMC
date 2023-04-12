@@ -1,51 +1,51 @@
 class DimensionsBlock:
     def __init__(self, angle, capacity, conductance, frequency, inductance, lenght, resistance):
-        self.ang = angle
-        self.cap = capacity
-        self.con = conductance
-        self.freq = frequency
-        self.ind = inductance
-        self.lng = lenght
-        self.res = resistance
+        self.__ang = angle
+        self.__cap = capacity
+        self.__con = conductance
+        self.__freq = frequency
+        self.__ind = inductance
+        self.__lng = lenght
+        self.__res = resistance
 
     def GetAngle(self):
-        return self.ang
+        return self.__ang
 
     def SetAngle(self, angle):
-        self.ang = angle
+        self.__ang = angle
 
     def GetCapacity(self):
-        return self.cap
+        return self.__cap
 
     def SetCapacity(self, capacity):
-        self.cap = capacity
+        self.__cap = capacity
 
     def GetConductance(self):
-        return self.con
+        return self.__con
 
     def SetConductance(self, conductance):
-        self.con = conductance
+        self.__con = conductance
 
     def GetFrequency(self):
-        return self.freq
+        return self.__freq
 
     def SetFrequency(self, frequency):
-        self.freq = frequency
+        self.__freq = frequency
 
     def GetInductance(self):
-        return self.ind
+        return self.__ind
 
     def SetInductance(self, inductance):
-        self.ind = inductance
+        self.__ind = inductance
 
     def GetLenght(self):
-        return self.lng
+        return self.__lng
 
     def SetLenght(self, lenght):
-        self.lng = lenght
+        self.__lng = lenght
 
     def GetResistance(self):
-        return self.res
+        return self.__res
 
     def SetResistance(self, resistance):
-        self.res = resistance
+        self.__res = resistance
