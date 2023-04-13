@@ -30,7 +30,7 @@ class GeometryBlock:
         self.__ycells2 =   ycells2
         self.__nsubs =   nsubs
         self.__eeff =   eeff
-        #Слой в Box
+        #пїЅпїЅпїЅпїЅ пїЅ Box
         self.__thickness   =  thickness
         self.__erel  =   erel
         self.__mrel   =   mrel
@@ -40,7 +40,7 @@ class GeometryBlock:
         self.__nzpart =   nzpart
         self.__name =   name
 
-        #Слой в Box
+        #пїЅпїЅпїЅпїЅ пїЅ Box
         def Getthickness(self):
             return self.__thickness
         def Setthickness(self, thickness):
