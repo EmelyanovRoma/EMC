@@ -17,6 +17,6 @@ lines = ["FTYP SONPROJ 19 ! Sonnet Project File",
          "\nANN " + header.GetaNN(),
          "\nEND HEADER",
          ]  
-with open(r"C:\Users\R.O.G\Desktop\example.txt", "w") as f:
+with open(r"example.txt", "w") as f:
     
     f.writelines(lines)
