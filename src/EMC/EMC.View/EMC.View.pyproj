@@ -21,6 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassHeader.py" />
+    <Compile Include="ControlBlock.py" />
     <Compile Include="DimensionsBlock.py" />
     <Compile Include="ClassFileOutBlock.py" />
     <Compile Include="EMC.View.py" />
