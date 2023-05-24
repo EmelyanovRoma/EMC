@@ -1,4 +1,8 @@
+from GeometryBox import GeometryBox
+
 class GeometryBlock:
+
+
     def __init__(self,NameTMET,PatternidTMET,TypeTMET,Value1TMET,Value2TMET,Value3TMET,Value4TMET,
                  NameBMET,PatternidBMET,TypeBMET,Value1BMET,Value2BMET,Value3BMET,Value4BMET,
                  nlev,xwidth,ywidth,xcells2,ycells2,nsubs,eeff,
@@ -66,6 +70,7 @@ class GeometryBlock:
         self.__y = Y
         self.__uL = UL
 
+    GeometryBox 
         #Box
     def Getthickness(self):
         return self.__thickness
