@@ -27,6 +27,10 @@
     <Compile Include="ClassFileOutBlock.py" />
     <Compile Include="EMC.View.py" />
     <Compile Include="Geometry.py" />
+    <Compile Include="GeometryBox.py" />
+    <Compile Include="DielectricLayer.py" />
+    <Compile Include="Port.py" />
+    <Compile Include="TechnologyLayer.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

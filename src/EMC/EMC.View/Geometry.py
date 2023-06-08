@@ -1,188 +1,224 @@
-#from typing import NamedTuple
-
+from GeometryBox import GeometryBox
+from TechnologyLayer import TechnologyLayer
+from Port import Port
 
 class GeometryBlock:
-    def __init__(self,NameTMET,PatternidTMET,TypeTMET,Value1TMET,Value2TMET,Value3TMET,Value4TMET,
-                 NameBMET,PatternidBMET,TypeBMET,Value1BMET,Value2BMET,Value3BMET,Value4BMET,
-                 nlev,xwidth,ywidth,xcells2,ycells2,nsubs,eeff,
-                 thickness,erel,mrel,eloss,mloss,esignma,nzpart,name):
+    defaultGeometryBox = GeometryBox("0", "1", "1", "0", "0", "0", "0")
+    defaultTechnologyLayer = TechnologyLayer("METAL", "Metal1", "Metal1", "0", "0",
+                                      "0", "0", "-1", "N", "40", "1", "1", "100", "100", "0", "0", "0", "Y")
+
+    def __init__(self, nameTMET, patternIdTMET, typeTMET, value1TMET, value2TMET, value3TMET, value4TMET,
+                 nameBMET, patternidBMET, typeBMET, value1BMET, value2BMET, value3BMET, value4BMET,
+                 toLevel, conMax, meshingfill, pads, x, y, ul):
         #TMET
-        self.__NameTMET = NameTMET
-        self.__PatternidTMET  =   PatternidTMET
-        self.__TypeTMET   =   TypeTMET
-        self.__Value1TMET =   Value1TMET
-        self.__Value2TMET =   Value2TMET
-        self.__Value3TMET =   Value3TMET
-        self.__Value4TMET =   Value4TMET
+        self.__nameTMET = nameTMET
+        self.__patternIdTMET = patternIdTMET
+        self.__typeTMET = typeTMET
+        self.__value1TMET = value1TMET
+        self.__value2TMET = value2TMET
+        self.__value3TMET = value3TMET
+        self.__value4TMET = value4TMET
+
         #BMET
-        self.__NameBMET   =  NameBMET
-        self.__PatternidBMET  =   PatternidBMET
-        self.__TypeBMET   =   TypeBMET
-        self.__Value1BMET =   Value1BMET
-        self.__Value2BMET =   Value2BMET
-        self.__Value3BMET =   Value3BMET
-        self.__Value4BMET =   Value4BMET
-        #BOX
-        self.__nlev   =  nlev
-        self.__xwidth  =   xwidth
-        self.__ywidth   =   ywidth
-        self.__xcells2 =   xcells2
-        self.__ycells2 =   ycells2
-        self.__nsubs =   nsubs
-        self.__eeff =   eeff
-        #���� � Box
-        self.__thickness   =  thickness
-        self.__erel  =   erel
-        self.__mrel   =   mrel
-        self.__eloss =   eloss
-        self.__mloss =   mloss
-        self.__esignma =   esignma
-        self.__nzpart =   nzpart
-        self.__name =   name
+        self.__nameBMET = nameBMET
+        self.__patternIdBMET = patternidBMET
+        self.__typeBMET = typeBMET
+        self.__value1BMET = value1BMET
+        self.__value2BMET = value2BMET
+        self.__value3BMET = value3BMET
+        self.__value4BMET = value4BMET
 
-        #���� � Box
-        def Getthickness(self):
-            return self.__thickness
-        def Setthickness(self, thickness):
-            self.__thickness = thickness
+        # GeometryBox
+        self.__geometryBox = self.defaultGeometryBox
 
-        def Geterel(self):
-                return self.__erel
-        def Seterel(self, erel):
-            self.__erel = erel
+        # Techlay
+        self.__technologyLayers = [self.defaultTechnologyLayer]
 
-        def Getmrel(self):
-                return self.__mrel
-        def Setmrel(self, mrel):
-            self.__mrel = mrel
-            
-        def Geteloss(self):
-                return self.__eloss
-        def Seteloss(self, eloss):
-            self.__eloss = eloss
+        #TOLEVEL
+        self.__tolevel = toLevel
+        self.__conmax2 = conMax
+        self.__meshingfill = meshingfill
+        self.__pads = pads
 
-        def Getmloss(self):
-                return self.__mloss
-        def Setmloss(self, mloss):
-            self.__mloss = mloss
+        #LORGN
+        self.__x = x
+        self.__y = y
+        self.__ul = ul
 
-        def Getesignma(self):
-                return self.__esignma
-        def Setesignma(self, esignma):
-            self.__esignma = esignma
+        # Port
+        self.__ports = []
+       
+    #TMET
+    @property
+    def NameTMET(self):
+        return self.__nameTMET
 
-        def Getnzpart(self):
-                return self.__nzpart
-        def Setnzpart(self, nzpart):
-            self.__nzpart = nzpart 
+    @NameTMET.setter
+    def NameTMET(self, NameTMET):
+        self.__nameTMET = NameTMET
 
-        def Getname(self):
-                return self.__name
-        def Setname(self, name):
-            self.__name = name
-        #BOX
-        def Getnlev(self):
-            return self.__nlev
-        def Setnlev(self, nlev):
-            self.__nlev = nlev
 
-        def Getxwidth(self):
-                return self.__xwidth
-        def Setxwidth(self, xwidth):
-            self.__xwidth = xwidth
+    @property
+    def PatternIdTMET(self):
+        return self.__patternIdTMET
 
-        def Getywidth(self):
-                return self.__ywidth
-        def Setywidth(self, ywidth):
-            self.__ywidth = ywidth
-            
-        def Getxcells2(self):
-                return self.__xcells2
-        def Setxcells2(self, xcells2):
-            self.__xcells2 = xcells2
+    @PatternIdTMET.setter
+    def PatternIdTMET(self, PatternidTMET):
+        self.__patternIdTMET = PatternidTMET
 
-        def Getycells2(self):
-                return self.__ycells2
-        def Setycells2(self, ycells2):
-            self.__ycells2 = ycells2
 
-        def Getnsubs(self):
-                return self.__nsubs
-        def Setnsubs(self, nsubs):
-            self.__nsubs = nsubs
+    @property
+    def TypeTMET(self):
+        return self.__typeTMET
 
-        def Geteeff(self):
-                return self.__eeff
-        def Seteeff(self, eeff):
-            self.__eeff = eeff 
-        #TMET
-        def GetNameTMET(self):
-            return self.__NameTMET
-        def SetNameTMET(self, NameTMET):
-            self.__NameTMET = NameTMET
+    @TypeTMET.setter
+    def TypeTMET(self, TypeTMET):
+        self.__typeTMET = TypeTMET
+        
 
-        def GetPatternidTMET(self):
-                return self.__PatternidTMET
-        def SetPatternidTMET(self, PatternidTMET):
-            self.__PatternidTMET = PatternidTMET
+    @property
+    def Value1TMET(self):
+        return self.__value1TMET
 
-        def GetTypeTMET(self):
-                return self.__TypeTMET
-        def SetTypeTMET(self, TypeTMET):
-            self.__TypeTMET = TypeTMET
-            
-        def GetValue1TMET(self):
-                return self.__Value1TMET
-        def SetValue1TMET(self, Value1TMET):
-            self.__Value1TMET = Value1TMET
+    @Value1TMET.setter
+    def Value1TMET(self, Value1TMET):
+        self.__value1TMET = Value1TMET
 
-        def GetValue2TMET(self):
-                return self.__Value2TMET
-        def SetValue2TMET(self, Value2TMET):
-            self.j__Value2TMET = Value2TMET
 
-        def GetValue3TMET(self):
-                return self.__Value3TMET
-        def SetValue3TMET(self, Value3TMET):
-            self.__Value3TMET = Value3TMET
+    @property
+    def Value2TMET(self):
+        return self.__value2TMET
 
-        def GetValue4TMET(self):
-                return self.__Value4TMET
-        def SetValue4TMET(self, Value4TMET):
-            self.__Value4TMET = Value4TMET 
+    @Value2TMET.setter
+    def Value2TMET(self, Value2TMET):
+        self.j__Value2TMET = Value2TMET
 
-            #BMET
-        def GetNameBMET(self):
-            return self.__NameBMET
-        def SetNameBMET(self, NameBMET):
-            self.__NameBMET = NameBMET
 
-        def GetPatternidBMET(self):
-                return self.__PatternidBMET
-        def SetPatternidBMET(self, PatternidBMET):
-            self.__PatternidBMET = PatternidBMET
+    @property
+    def Value3TMET(self):
+        return self.__value3TMET
 
-        def GetTypeBMET(self):
-                return self.__TypeBMET
-        def SetTypeBMET(self, TypeBMET):
-            self.__TypeBMET = TypeBMET
-            
-        def GetValue1BMET(self):
-                return self.__Value1BMET
-        def SetValue1BMET(self, Value1BMET):
-            self.__Value1BMET = Value1BMET
+    @Value3TMET.setter
+    def Value3TMET(self, Value3TMET):
+        self.__value3TMET = Value3TMET
 
-        def GetValue2BMET(self):
-                return self.__Value2BMET
-        def SetValue2BMET(self, Value2BMET):
-            self.__Value2BMET = Value2BMET
 
-        def GetValue3BMET(self):
-                return self.__Value3BMET
-        def SetValue3BMET(self, Value3BMET):
-            self.__Value3BMET = Value3BMET
+    @property
+    def Value4TMET(self):
+        return self.__value4TMET
 
-        def GetValue4BMET(self):
-                return self.__Value4BMET
-        def SetValue4BMET(self, Value4BMET):
-            self.__Value4BMET = Value4BMET
+    @Value4TMET.setter
+    def Value4TMET(self, value4TMET):
+        self.__value4TMET = value4TMET 
+
+
+    #BMET
+    @property
+    def NameBMET(self):
+        return self.__nameBMET
+
+    @NameBMET.setter
+    def NameBMET(self, nameBMET):
+        self.__nameBMET = nameBMET
+
+
+    @property
+    def PatternIdBMET(self):
+            return self.__patternIdBMET
+
+    @PatternIdBMET.setter
+    def PatternIdBMET(self, patternidBMET):
+        self.__patternIdBMET = patternidBMET
+
+
+    @property
+    def TypeBMET(self):
+            return self.__typeBMET
+
+    @TypeBMET.setter
+    def TypeBMET(self, typeBMET):
+        self.__typeBMET = typeBMET
+        
+
+    @property
+    def Value1BMET(self):
+            return self.__value1BMET
+
+    @Value1BMET.setter
+    def Value1BMET(self, value1BMET):
+        self.__value1BMET = value1BMET
+
+
+    @property
+    def Value2BMET(self):
+            return self.__value2BMET
+
+    @Value2BMET.setter
+    def SetValue2BMET(self, value2BMET):
+        self.__value2BMET = value2BMET
+
+
+    @property
+    def Value3BMET(self):
+            return self.__value3BMET
+
+    @Value3BMET.setter
+    def Value3BMET(self, value3BMET):
+        self.__value3BMET = value3BMET
+
+
+    @property
+    def Value4BMET(self):
+            return self.__value4BMET
+
+    @Value4BMET.setter
+    def Value4BMET(self, value4BMET):
+        self.__value4BMET = value4BMET
+  
+    #TOLEVEL
+    def GetToLevel(self):
+        return self.__tolevel
+    def SetToLevel(self, ToLevel):
+        self.__tolevel = ToLevel
+
+    def GetConmax2(self):
+        return self.__conmax2
+    def SetConmax2(self, Conmax2):
+        self.__conmax2 = Conmax2
+
+    def GetMeshingfill(self):
+        return self.__meshingfill
+    def SetMeshingfill(self, Meshingfill):
+        self.__meshingfill = Meshingfill
+
+    def GetPads(self):
+        return self.__pads
+    def SetPads(self, Pads):
+        self.__pads = Pads
+
+    #LORGN
+    @property
+    def X(self):
+        return self.__x
+
+    @X.setter
+    def SetX(self, x):
+        self.__x = x
+    
+
+    @property
+    def Y(self):
+        return self.__y
+
+    @Y.setter
+    def SetY(self, y):
+        self.__y = y
+    
+    
+    @property
+    def UL(self):
+        return self.__ul
+
+    @UL.setter
+    def SetUL(self, ul):
+        self.__ul = ul

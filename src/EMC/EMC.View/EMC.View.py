@@ -1,3 +1,4 @@
+import os
 from DimensionsBlock import DimensionsBlock
 from ClassHeader import Header
 from ControlBlock import ControlBlock
@@ -20,3 +21,9 @@ lines = ["FTYP SONPROJ 19 ! Sonnet Project File",
 with open(r"example.txt", "w") as f:
     
     f.writelines(lines)
+path = 'C://Program Files//Sonnet Software//18.53//bin'
+
+command = 'em -v C://temp//2.son'
+
+os.chdir(path)
+os.system(command)
