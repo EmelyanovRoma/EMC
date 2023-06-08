@@ -6,7 +6,7 @@ class GeometryBlock:
     defaultGeometryBox = GeometryBox("0", "1", "1", "0", "0", "0", "0")
     defaultTechnologyLayer = TechnologyLayer("METAL", "Metal1", "Metal1", "0", "0",
                                       "0", "0", "-1", "N", "40", "1", "1", "100", "100", "0", "0", "0", "Y")
-
+    port1 = Port("BOX", "47", "1", "3", "1", "50", "0", "0", "0", "0", "25")
     def __init__(self, nameTMET, patternIdTMET, typeTMET, value1TMET, value2TMET, value3TMET, value4TMET,
                  nameBMET, patternidBMET, typeBMET, value1BMET, value2BMET, value3BMET, value4BMET,
                  toLevel, conMax, meshingfill, pads, x, y, ul):
@@ -46,7 +46,7 @@ class GeometryBlock:
         self.__ul = ul
 
         # Port
-        self.__ports = []
+        self.__ports = [self.port1]
        
     #TMET
     @property

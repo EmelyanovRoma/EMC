@@ -121,7 +121,7 @@ class TechnologyLayer:
 
     @property
     def YMin(self):
-        return self.__YMin
+        return self.__yMin
 
     @YMin.setter
     def YMin(self, yMin):

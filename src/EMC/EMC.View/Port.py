@@ -1,7 +1,3 @@
-from turtle import ycor
-from xml.sax.handler import property_declaration_handler
-
-
 class Port:
     def __init__(self, Type, iPolygon, numPoints, iVertex, portNum, resist, react, induct, capac, xCoord, yCoord):
         self.__type = Type
