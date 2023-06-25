@@ -5,7 +5,16 @@ from GeometryBlock import GeometryBlock
 
 
 class Collector:
-    pass
+ def __init__(header, dimensions, control, geometry, eloss, mloss, esignma, nzpart, name):
+        self.__thickness = thickness    
+        self.__erel = erel
+        self.__mrel = mrel
+        self.__eloss = eloss
+        self.__mloss = mloss
+        self.__esignma = esignma
+        self.__nzpart = nzpart
+        self.__name = name
+
 header = Header("SL636c7473", "04/12/2023 21:17:59", "xgeom 18.53-Lite 04/12/2023 21:17:50", "sonnet 18.53-Lite", "01/17/2019 10:20:25", "01/17/2019 10:20:25", "")
 dimensions = DimensionsBlock("DEG", "PF", "/OH", "GHZ", "NH", "MIL", "OH")
 control = ControlBlock("VARSWP", "-d", "0", "2", "N")

@@ -1,10 +1,5 @@
-import os
-from DimensionsBlock import DimensionsBlock
-from ClassHeader import Header
-from ControlBlock import ControlBlock
-from Geometry import GeometryBlock
-
-header = Header("SL636c7473", "04/12/2023 21:17:59", "xgeom 18.53-Lite 04/12/2023 21:17:50", "sonnet 18.53-Lite", "01/17/2019 10:20:25", "01/17/2019 10:20:25", "")
+def MakeFile():
+    header = Header("SL636c7473", "04/12/2023 21:17:59", "xgeom 18.53-Lite 04/12/2023 21:17:50", "sonnet 18.53-Lite", "01/17/2019 10:20:25", "01/17/2019 10:20:25", "")
 dimensions = DimensionsBlock("DEG", "PF", "/OH", "GHZ", "NH", "MIL", "OH")
 control = ControlBlock("VARSWP", "-d", "0", "2", "N")
 geometry = GeometryBlock("Lossless" ,"0","SUP","0","0","0","0","Lossless" ,"0","SUP","0","0","0","0","","","","","0","250","U")
@@ -69,19 +64,51 @@ lines = ["FTYP SONPROJ 19 ! Sonnet Project File",
          "\nEND VARSWP"
          ]  
 
-with open(r"C:\temp\example.son", "w") as f:   
-    f.writelines(lines)
 
-path = 'C://Program Files//Sonnet Software//18.53//bin'
 
-command = 'em -v C://temp//example.son'
+def Menu():
+    print("[1] option 1")
+    print("[1] option 1")
+    print("[0] Выход")
 
-makeDirPath = 'C://'
+Menu()
+option = int(input("Выберите опцию: "))
 
-makeDirPathcommand = 'md temp'
+while option != 0:
+    if option == 1:
+        # пишем опцию
+        pass
+    elif option == 2:
+         # пишем опцию
+        pass
+    else:
+        print("Такой опции нет")
 
-os.chdir(makeDirPath)
-os.system('md temp')
+    Menu()
+    option = int(input("Выберите опцию: "))
 
-os.chdir(path)
-os.system(command)
+print("Выход из программы ...")
+
+
+
+
+
+
+
+
+#with open(r"C:\temp\example.son", "w") as f:   
+#    f.writelines(lines)
+#
+#path = 'C://Program Files//Sonnet Software//18.53//bin'
+#
+#command = 'em -v C://temp//example.son'
+#
+#makeDirPath = 'C://'
+#
+#makeDirPathcommand = 'md temp'
+#
+#os.chdir(makeDirPath)
+#os.system('md temp')
+#
+#os.chdir(path)
+#os.system(command)
