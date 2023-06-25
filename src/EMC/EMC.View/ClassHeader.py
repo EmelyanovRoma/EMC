@@ -8,50 +8,61 @@ class Header():
         self.__hDate = hDate
         self.__aNN = aNN
     
-    def Getlicense(self):
+    @property
+    def Lic(self):
         return self.__lic
 
-    def Setlicense(self, lic):
+    @Lic.setter
+    def Lic(self, lic):
         self.__lic = lic
 
-    def GetDate(self):
+    @property
+    def Date(self):
         return self.__dat
 
-    def SetDate(self, dat):
+    @Date.setter
+    def Date(self, dat):
         self.__dat = dat
 
-    def GetbuiltByCreated(self):
+    @property
+    def BuiltByCreated(self):
         return self.__builtByCreated
 
-    def SetbuiltByCreated(self, builtByCreated):
+    @BuiltByCreated.setter
+    def BuiltByCreated(self, builtByCreated):
         self.__builtByCreated = builtByCreated
 
-    def GetbuiltBySaved(self):
+    @property
+    def BuiltBySaved(self):
         return self.__builtBySaved
 
-    def SetbuiltBySaved(self, builtBySaved):
+    @BuiltBySaved.setter
+    def BuiltBySaved(self, builtBySaved):
         self.__builtBySaved = builtBySaved
-    
-    def GetmDate(self):
+ 
+    @property        
+    def MDate(self):
         return self.__mDate
 
-    def SetmDate(self, mDate):
+    @MDate.setter
+    def MDate(self, mDate):
        self.__mDate =  mDate
 
-    def GethDate(self):
+    @property
+    def HDate(self):
         return self.__hDate
 
-    def SethDate(self, hDate):
+    @HDate.setter
+    def HDate(self, hDate):
         self.__hDate = hDate
 
-    def GetaNN(self):
+    @property
+    def ANN(self):
         return self.__aNN
 
-    def SetaNN(self, aNN):
+    @ANN.setter
+    def ANN(self, aNN):
         self.__aNN = aNN
-
-        
-
 
 
 
