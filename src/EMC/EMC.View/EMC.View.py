@@ -76,5 +76,12 @@ path = 'C://Program Files//Sonnet Software//18.53//bin'
 
 command = 'em -v C://temp//example.son'
 
+makeDirPath = 'C://'
+
+makeDirPathcommand = 'md temp'
+
+os.chdir(makeDirPath)
+os.system('md temp')
+
 os.chdir(path)
 os.system(command)
