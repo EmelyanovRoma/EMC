@@ -27,6 +27,7 @@
     <Compile Include="DimensionsBlock.py" />
     <Compile Include="ClassFileOutBlock.py" />
     <Compile Include="EMC.View.py" />
+    <Compile Include="Freq.py" />
     <Compile Include="Geometry.py" />
     <Compile Include="GeometryBox.py" />
     <Compile Include="DielectricLayer.py" />
