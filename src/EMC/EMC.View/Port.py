@@ -109,3 +109,16 @@ class Port:
     @YCoord.setter
     def YCoord(self, yCoord):
         self.__yCoord = yCoord
+
+    def ShowPort(self):
+        print("POR1 " + self.Type + "\n" +
+              "POLY " + str(self.IPolygon) + " " + 
+              str(self.NumPoints) + "\n" + 
+              str(self.IVertex) + "\n" +
+              str(self.PortNum) + " " +
+              str(self.Resist) + " " +
+              str(self.React) + " " +
+              str(self.Induct) + " " +
+              str(self.Capac) + " " +
+              str(self.XCoord) + " " +
+              str(self.YCoord))

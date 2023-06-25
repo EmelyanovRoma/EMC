@@ -1,11 +1,6 @@
-class TechnologyLayer:
-    def __init__(self, layType, layName1, layName2, mapping, Type, iLevel, nVertices, mType, fillType, 
-                 debugId, xMin, yMin, xMax, yMax, conMax, res1, res2, edgemesh):
-        self.__layType = layType
-        self.__layName1 = layName1
-        self.__layName2 = layName2
-        self.__mapping = mapping
-        self.__type = Type
+class Polygon:
+    def __init__(self, iLevel, nVertices, mType, fillType, debugId, xMin, 
+                 yMin, xMax, yMax, conMax, res1, res2, edgemesh, xVertices, yVertices):
         self.__iLevel = iLevel
         self.__nVertices = nVertices
         self.__mType = mType
@@ -19,52 +14,9 @@ class TechnologyLayer:
         self.__res1 = res1
         self.__res2 = res2
         self.__edgemesh = edgemesh
-
-    @property
-    def LayType(self):
-        return self.__layType
-
-    @LayType.setter
-    def LayType(self, layType):
-        self.__layType = layType
-
-
-    @property
-    def LayName1(self):
-        return self.__layName1
-
-    @LayName1.setter
-    def LayName1(self, layName):
-        self.__layName1 = layName
+        self.__xVertices = xVertices
+        self.__yVertices = yVertices
     
-
-    @property
-    def LayName2(self):
-        return self.__layName2
-
-    @LayName2.setter
-    def LayName2(self, layName):
-        self.__layName2 = layName
-
-
-    @property
-    def Mapping(self):
-        return self.__mapping
-
-    @Mapping.setter
-    def Mapping(self, mapping):
-        self.__mapping = mapping
-
-
-    @property
-    def Type(self):
-        return self.__type
-
-    @Type.setter
-    def Type(self, Type):
-        self.__type = Type
-
-
     @property
     def ILevel(self):
         return self.__iLevel
@@ -182,14 +134,25 @@ class TechnologyLayer:
         self.__edgemesh = edgemesh
 
 
-    def ShowTechnologyLayer(self):
-        print("TECHLAY " + 
-              str(self.LayType) + " " +
-              str(self.LayName1) + " " +
-              str(self.LayName2) + " " +
-              str(self.Mapping) + " " +
-              str(self.Type) + " " +
-              str(self.ILevel) + " " +
+    @property
+    def XVertices(self):
+        return self.__xVertices
+
+    @XVertices.setter
+    def XVertices(self, xVertices):
+        self.__xVertices = xVertices
+
+
+    @property
+    def YVertices(self):
+        return self.__yVertices
+
+    @YVertices.setter
+    def YVertices(self, yVertices):
+        self.__yVertices = yVertices
+
+    def ShowPolygon(self):
+        print(str(self.ILevel) + " " +
               str(self.NVertices) + " " +
               str(self.MType) + " " +
               str(self.FillType) + " " +
@@ -201,4 +164,7 @@ class TechnologyLayer:
               str(self.ConMax) + " " +
               str(self.Res1) + " " +
               str(self.Res2) + " " +
-              str(self.Edgemesh) + " ")
+              str(self.Edgemesh))
+
+        for i in range(len(self.XVertices)):
+            print(str(self.XVertices[i]) + " " + str(self.YVertices[i]))
