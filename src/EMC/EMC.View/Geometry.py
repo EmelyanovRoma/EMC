@@ -1,14 +1,19 @@
+from DielectricLayer import DielectricLayer
 from GeometryBox import GeometryBox
 from TechnologyLayer import TechnologyLayer
 from Port import Port
+from Polygon import Polygon
 
 class GeometryBlock:
-    defaultGeometryBox = GeometryBox("0", "1", "1", "0", "0", "0", "0")
-    defaultTechnologyLayer = TechnologyLayer("METAL", "Metal1", "Metal1", "0", "0",
-                                      "0", "0", "-1", "N", "40", "1", "1", "100", "100", "0", "0", "0", "Y")
+    defaultGeometryBox = GeometryBox(1, 350, 250, 70, 50, 20, 0)
+    defaultTechnologyLayer = TechnologyLayer("METAL", "Metal1", "Metal1", 0, 0,
+                                      0, 0, -1, "N", 40, 1, 1, 100, 100, 0, 0, 0, "Y")
+    numberOfPolygons = 0
+    debugId = 1
+    numberOfPort = 1
 
     def __init__(self, nameTMET, patternIdTMET, typeTMET, value1TMET, value2TMET, value3TMET, value4TMET,
-                 nameBMET, patternidBMET, typeBMET, value1BMET, value2BMET, value3BMET, value4BMET,
+                 nameBMET, patternIdBMET, typeBMET, value1BMET, value2BMET, value3BMET, value4BMET,
                  toLevel, conMax, meshingfill, pads, x, y, ul):
         #TMET
         self.__nameTMET = nameTMET
@@ -21,7 +26,7 @@ class GeometryBlock:
 
         #BMET
         self.__nameBMET = nameBMET
-        self.__patternIdBMET = patternidBMET
+        self.__patternIdBMET = patternIdBMET
         self.__typeBMET = typeBMET
         self.__value1BMET = value1BMET
         self.__value2BMET = value2BMET
@@ -33,6 +38,9 @@ class GeometryBlock:
 
         # Techlay
         self.__technologyLayers = [self.defaultTechnologyLayer]
+
+        # Polygons
+        self.__polygons = []
 
         #TOLEVEL
         self.__tolevel = toLevel
@@ -175,7 +183,37 @@ class GeometryBlock:
     def Value4BMET(self, value4BMET):
         self.__value4BMET = value4BMET
   
-    #TOLEVEL
+    
+    # Geometry Box
+    @property
+    def GeometryBox(self):
+        return self.__geometryBox
+
+    @GeometryBox.setter
+    def GeometryBox(self, geometryBox):
+        self.__geometryBox = geometryBox
+
+
+    # Technology Layers
+    @property
+    def TechnologyLayers(self):
+        return self.__technologyLayers
+
+    @TechnologyLayers.setter
+    def TechnologyLayers(self, technologyLayers):
+        self.__technologyLayers = technologyLayers
+
+    # Polygons
+    @property
+    def Polygons(self):
+        return self.__polygons
+
+    @Polygons.setter
+    def Polygons(self, polygons):
+        self.__polygons = polygons
+
+
+    # To Level
     def GetToLevel(self):
         return self.__tolevel
     def SetToLevel(self, ToLevel):
@@ -222,3 +260,245 @@ class GeometryBlock:
     @UL.setter
     def SetUL(self, ul):
         self.__ul = ul
+
+
+    @property
+    def Ports(self):
+        return self.__ports
+
+    @Ports.setter
+    def Ports(self, ports):
+        self.__ports = ports
+
+
+    def AddDielectricLayer(self, thickness, erel, mrel, eloss, mloss, esignma, nzpart, name):
+        newDielectricLayer = DielectricLayer(thickness, erel, mrel, eloss, mloss, esignma, nzpart, name)
+        self.GeometryBox.DielectricLayers.append(newDielectricLayer)
+
+    #def AddDielectricLayer(self):
+    #    print("Введите толщину слоя: ")
+    #    thickness = input()
+    #
+    #    print("Введите диэлектрическую проницаемость: ")
+    #    erel = input()
+    #
+    #    print("Введите магнитную проницаемость: ")
+    #    mrel = input()
+    #
+    #    print("Введите тангенс угла диэлектрических потерь: ")
+    #    eloss = input()
+    #
+    #    print("Введите тангенс угла магнитных потерь: ")
+    #    mloss = input()
+    #
+    #    esignma = 0
+    #    nzpart = 0
+    #
+    #    print("Введите имя слоя: ")
+    #    name = input()
+    #
+    #    newDielectricLayer = DielectricLayer(thickness, erel, mrel, eloss, mloss, esignma, nzpart, name)
+    #    self.GeometryBox.DielectricLayers.append(newDielectricLayer)
+
+
+    def RemoveDielectricLayer(self):
+        print("Выберите, какой диэлектрический слой нужно удалить:")
+
+        for i in range(len(self.GeometryBox.DielectricLayers)):
+            print("[", i, "]",
+                 self.GeometryBox.DielectricLayers[i].Thickness,
+                 self.GeometryBox.DielectricLayers[i].Erel,
+                 self.GeometryBox.DielectricLayers[i].Mrel,
+                 self.GeometryBox.DielectricLayers[i].Eloss,
+                 self.GeometryBox.DielectricLayers[i].Mloss,
+                 self.GeometryBox.DielectricLayers[i].Esignma,
+                 self.GeometryBox.DielectricLayers[i].Nzpart,
+                 self.GeometryBox.DielectricLayers[i].Name)
+
+        indexOfDeletedLayer = input("-> ")
+        while int(indexOfDeletedLayer) < 0 or int(indexOfDeletedLayer) >= len(self.GeometryBox.DielectricLayers):
+            print("Неправилно выбран удаляемый диэлектрический слой.")
+            indexOfDeletedLayer = input("Выберите, какой диэлектрический слой нужно удалить: ")
+
+        self.GeometryBox.DielectricLayers.pop(int(indexOfDeletedLayer))
+
+
+    def AddPolygon(self):
+        numOfVertices = input("Введите количество вершин полигона: ")
+        while int(numOfVertices) < 3:
+            print("\nКоличество вершин должно быть 3 или больше.")
+            numOfVertices = input("Введите количество вершин полигона: ")
+
+        print("\nВыберите какой технологический слой будет использоваться для полигона: ")
+        for i in range(len(self.TechnologyLayers)):
+            print("[" + str(i) + "]")
+            self.TechnologyLayers[i].ShowTechnologyLayer()
+
+        index = input("-> ")
+        while int(index) < 0 or int(index) >= len(self.TechnologyLayers):
+            print("\nТехнологический слой выбран неверно.")
+            index = input("Выберите технологический слой: ")
+
+        xVertices = []
+        yVertices = []
+
+        for i in range(int(numOfVertices)):
+            print("\nВведите координату вершины x",i, ": ")           
+            xVertices.append(input("-> "))
+
+            print("Введите координату вершины y", i, ": ")
+            yVertices.append(input("-> "))
+           
+        xVertices.append(xVertices[0])
+        yVertices.append(yVertices[0])
+
+        newPolygon = Polygon(self.TechnologyLayers[int(index)].ILevel,
+                             int(numOfVertices) + 1,
+                             self.TechnologyLayers[int(index)].MType,
+                             self.TechnologyLayers[int(index)].FillType,
+                             self.debugId,
+                             self.TechnologyLayers[int(index)].XMin,
+                             self.TechnologyLayers[int(index)].YMin,
+                             self.TechnologyLayers[int(index)].XMax,
+                             self.TechnologyLayers[int(index)].YMax,
+                             self.TechnologyLayers[int(index)].ConMax,
+                             self.TechnologyLayers[int(index)].Res1,
+                             self.TechnologyLayers[int(index)].Res2,
+                             self.TechnologyLayers[int(index)].Edgemesh,
+                             xVertices,
+                             yVertices) 
+
+        self.Polygons.append(newPolygon)
+        self.numberOfPolygons += 1
+        self.debugId += 1
+
+
+    def RemovePolygon(self):
+        print("Выберите, какой полигон нужно удалить:")
+
+        for i in range(len(self.Polygons)):
+            print("[" + str(i) + "]")
+            self.Polygons[i].ShowPolygon()
+
+        indexOfDeletedPolygon = input("-> ")
+        while int(indexOfDeletedPolygon) < 0 or int(indexOfDeletedPolygon) >= len(self.Polygons):
+            print("Неправильно выбран удаляемый полигон.")
+            indexOfDeletedPolygon = input("Выберите, какой полигон нужно удалить: ")
+
+        self.Polygons.pop(int(indexOfDeletedPolygon))
+        self.numberOfPolygons -= 1
+
+
+    def AddTechnologyLayer(self):
+        layType = "METAL"
+        layName1 = input("Введите название технологического слоя: ")
+        layName2 = layName1
+        mapping = -2
+        Type = 0
+
+        print("Выберите уровень, на котором будем располагаться слой: ")
+        for i in range(self.GeometryBox.NLev):
+            print(i, "уровень")
+        iLevel = input("-> ")
+
+        nVertices = 0
+        mType = -1
+        fillType = "N"
+        debugId = self.debugId
+        xMin = input("Введите минимальное значение x: ")
+        yMin = input("Введите минимальное значение y: ")
+        xMax = input("Введите максимальное значение x: ")
+        yMax = input("Введите максимальное значение y: ")
+        conMax = 0
+        res1 = 0
+        res2 = 0
+        edgemesh = "Y"
+
+        newTechnologyLayer = TechnologyLayer(layType, layName1, layName2, mapping, Type,
+                                             iLevel, nVertices, mType, fillType, debugId,
+                                             xMin, yMin, xMax, yMax, conMax, res1, res2, 
+                                             edgemesh)
+
+        self.TechnologyLayers.append(newTechnologyLayer)
+        self.debugId += 1
+
+
+    def RemoveTechnologyLayer(self):
+        print("Выберите, какой технологический слой нужно удалить:")
+
+        for i in range(len(self.TechnologyLayers)):
+            print("[" + str(i) + "]")
+            self.TechnologyLayers[i].ShowTechnologyLayer()
+
+        indexOfDeletedLayer = input("-> ")
+        while int(indexOfDeletedLayer) < 0 or int(indexOfDeletedLayer) >= len(self.TechnologyLayers):
+            print("Неправильно выбран удаляемый полигон.")
+            indexOfDeletedLayer = input("Выберите, какой полигон нужно удалить: ")
+
+        self.TechnologyLayers.pop(int(indexOfDeletedLayer))
+
+
+    def AddPort(self):
+        print("Выберите полигон: ")
+        for i in range(len(self.Polygons)):
+            print("[" + str(i) + "]")
+            self.Polygons[i].ShowPolygon()
+
+        indexOfPolygon = input("-> ")
+        while int(indexOfPolygon) < 0 or int(indexOfPolygon) >= len(self.Polygons):
+            print("Неправильно выбран  полигон.")
+            indexOfPolygon = input("Выберите полигон: ")
+
+        print("Выберите, между какими вершинами будет располагаться порт: ")
+        for i in range(self.Polygons[int(indexOfPolygon)].NVertices - 1):
+            j = i + 1
+            if j == self.Polygons[int(indexOfPolygon)].NVertices - 1:
+                j = 0
+
+            print("[" + str(i) + "] (" + 
+                  str(self.Polygons[int(indexOfPolygon)].XVertices[i]) + "; " + 
+                  str(self.Polygons[int(indexOfPolygon)].YVertices[i]) + ") и [" + 
+                  str(j) + "] (" + 
+                  str(self.Polygons[int(indexOfPolygon)].XVertices[j]) + "; " + 
+                  str(self.Polygons[int(indexOfPolygon)].YVertices[j]) + ")")
+
+        indexOfVertex = input("-> ")
+        while int(indexOfVertex) < 0 or int(indexOfVertex) >= self.Polygons[int(indexOfPolygon)].NVertices - 1:
+            print("Неправильно выбрано расположение порта.")
+            indexOfVertex = input("Выберите, между какими вершинами будет располагаться порт: ")
+
+        Type = "BOX"
+        iPolygon = self.Polygons[int(indexOfPolygon)].DebugId
+        numPoints = 1
+        iVertex = indexOfVertex
+        portNum = self.numberOfPort
+        resist = 50
+        react = 0
+        induct = 0
+        capac = 0
+
+        xDifference = (int(self.Polygons[int(indexOfPolygon)].XVertices[int(indexOfVertex)]) -
+                      int(self.Polygons[int(indexOfPolygon)].XVertices[int(indexOfVertex) + 1])) / 2
+        yDifference = (int(self.Polygons[int(indexOfPolygon)].YVertices[int(indexOfVertex)]) - 
+                       int(self.Polygons[int(indexOfPolygon)].YVertices[int(indexOfVertex) + 1])) / 2
+        xCoord = int(abs(xDifference))
+        yCoord = int(abs(yDifference))
+
+        newPort = Port(Type, iPolygon, numPoints, iVertex, portNum, resist, react, induct, capac, xCoord, yCoord)
+        self.Ports.append(newPort)
+        self.numberOfPort += 1
+
+
+    def RemovePort(self):
+        print("Выберите, какой порт нужно удалить:")
+
+        for i in range(len(self.Ports)):
+            print("[" + str(i) + "]")
+            self.Ports[i].ShowPort()
+
+        indexOfDeletedPort = input("-> ")
+        while int(indexOfDeletedPort) < 0 or int(indexOfDeletedPort) >= len(self.Ports):
+            print("Неправильно выбран удаляемый полигон.")
+            indexOfDeletedPort = input("Выберите, какой полигон нужно удалить: ")
+
+        self.Ports.pop(int(indexOfDeletedPort))

@@ -1,8 +1,8 @@
 from DielectricLayer import DielectricLayer
 
 class GeometryBox:
-    substrateDielectricLayer = DielectricLayer("0", "1", "1", "0", "0", "0", "0", "Substrate")
-    airDielectricLayer = DielectricLayer("0", "1", "1", "0", "0", "0", "0", "Air")
+    substrateDielectricLayer = DielectricLayer(1, 1, 1, 0, 0, 0, 0, "Substrate")
+    airDielectricLayer = DielectricLayer(1, 1, 1, 0, 0, 0, 0, "Air")
 
     def __init__(self, nLev, xWidth, ywidth, xCells2, yCells2, nSubs, eeff):
         self.__nLev = nLev
@@ -14,6 +14,14 @@ class GeometryBox:
         self.__eeff = eeff
         self.__dielectricLayers = [self.substrateDielectricLayer, self.airDielectricLayer]
     
+    @property
+    def DielectricLayers(self):
+        return self.__dielectricLayers
+
+    @DielectricLayers.setter
+    def DielectricLayers(self, dielectricLayers):
+        self.__dielectricLayers = dielectricLayers
+
     @property
     def NLev(self):
         return self.__nLev
