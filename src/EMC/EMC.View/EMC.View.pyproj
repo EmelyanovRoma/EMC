@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ClassHeader.py" />
+    <Compile Include="Collector.py" />
     <Compile Include="ControlBlock.py" />
     <Compile Include="DimensionsBlock.py" />
     <Compile Include="ClassFileOutBlock.py" />
