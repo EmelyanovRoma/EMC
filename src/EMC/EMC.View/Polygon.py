@@ -199,5 +199,5 @@ class Polygon:
               self.Res1 + " " +
               self.Res2 + " " +
               self.Edgemesh + "\n" + 
-              "TLAYNAM " + self.LayName + "INH\n" +
+              "TLAYNAM " + self.LayName + " INH\n" +
               coordinates)

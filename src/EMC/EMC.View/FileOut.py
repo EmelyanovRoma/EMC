@@ -27,7 +27,6 @@ class FileOut:
     def MakeTechnologyLayersString(self):
         technologyLayers = ""
         for i in range(len(self.geometry.TechnologyLayers)):
-            technologyLayers += "TECHLAY "
             technologyLayers += self.geometry.TechnologyLayers[i].GetTechnologyLayerString()
             technologyLayers += "END\nEND\n"
 
@@ -91,7 +90,7 @@ class FileOut:
                  self.MakeTechnologyLayersString(),
                  "LORGN " + self.geometry.X + " " + self.geometry.Y + " " + self.geometry.UL + "\n",
                  self.MakePortsString(),
-                 "NUM " + str(self.geometry.numberOfPolygons),
+                 "NUM " + str(self.geometry.numberOfPolygons) + "\n",
                  self.MakePolygonsString(),
                  "END GEO\n",
                  "OPT\n", 
