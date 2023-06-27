@@ -1,8 +1,8 @@
 from DielectricLayer import DielectricLayer
 
 class GeometryBox:
-    substrateDielectricLayer = DielectricLayer(1, 1, 1, 0, 0, 0, 0, "Substrate")
-    airDielectricLayer = DielectricLayer(1, 1, 1, 0, 0, 0, 0, "Air")
+    substrateDielectricLayer = DielectricLayer("1", "1", "1", "0", "0", "0", "0", "Substrate")
+    airDielectricLayer = DielectricLayer("1", "1", "1", "0", "0", "0", "0", "Air")
 
     def __init__(self, nLev, xWidth, ywidth, xCells2, yCells2, nSubs, eeff):
         self.__nLev = nLev
@@ -12,7 +12,7 @@ class GeometryBox:
         self.__yCells2 = yCells2
         self.__nSubs = nSubs
         self.__eeff = eeff
-        self.dielectricLayers = [self.airDielectricLayer, self.substrateDielectricLayer]
+        self.__dielectricLayers = [self.airDielectricLayer, self.substrateDielectricLayer]
     
     @property
     def DielectricLayers(self):
@@ -94,22 +94,5 @@ class GeometryBox:
         " " + self.NSubs +
         " " + self.Eeff)
 
-        for i in range(len(self.__dielectricLayers)):
-            print("      " + self.dielectricLayers[i].Thickness +
-            " " + self.dielectricLayers[i].Erel +
-            " " + self.dielectricLayers[i].Mrel +
-            " " + self.dielectricLayers[i].Eloss +
-            " " + self.dielectricLayers[i].Mloss +
-            " " + self.dielectricLayers[i].Esignma +
-            " " + self.dielectricLayers[i].Nzpart +
-            " \"" + self.dielectricLayers[i].Name + "\"")
-
-    def ShowDielectricLayer(self):
-        print("\n " + self.Thickness +
-        " " + self.Erel +
-        " " + self.Mrel +
-        " " + self.Eloss +
-        " " + self.Mloss +
-        " " + self.Esignma +
-        " " + self.Nzpart +
-        " \"" + self.Name + "\"")
+        for i in range(len(self.DielectricLayers)):
+            print("      " + self.DielectricLayers[i].GetDielectricLayerString())

@@ -110,15 +110,15 @@ class Port:
     def YCoord(self, yCoord):
         self.__yCoord = yCoord
 
-    def ShowPort(self):
-        print("POR1 " + self.Type + "\n" +
-              "POLY " + str(self.IPolygon) + " " + 
-              str(self.NumPoints) + "\n" + 
-              str(self.IVertex) + "\n" +
-              str(self.PortNum) + " " +
-              str(self.Resist) + " " +
-              str(self.React) + " " +
-              str(self.Induct) + " " +
-              str(self.Capac) + " " +
-              str(self.XCoord) + " " +
-              str(self.YCoord))
+    def GetShowPortString(self):
+        return("POR1 " + self.Type + "\n" +
+              "POLY " + self.IPolygon + " " + 
+              self.NumPoints + "\n" + 
+              self.IVertex + "\n" +
+              self.PortNum + " " +
+              self.Resist + " " +
+              self.React + " " +
+              self.Induct + " " +
+              self.Capac + " " +
+              self.XCoord + " " +
+              self.YCoord + "\n")

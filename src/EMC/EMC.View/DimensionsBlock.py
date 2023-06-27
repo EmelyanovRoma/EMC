@@ -1,7 +1,6 @@
-# ����� � ������, ����������� �� ������� ���������
+﻿# Класс с полями, отвечающими за единицы измерения
 class DimensionsBlock:
-
-    # ����������� ������
+    # Конструктор класса
     def __init__(self, angle, capacity, conductance, frequency, inductance, lenght, resistance):
         self.__ang = angle
         self.__cap = capacity
@@ -75,78 +74,116 @@ class DimensionsBlock:
         self.__res = resistance
 
     def ChangeFrequencyUnit(self):
-        print("Choose frequency unit:" +
-            "\n1) HZ;\n2) KHZ;\n3) MHZ;\n4) GHZ;\n5) THZ\n6) PHZ")
+        print("\nВыберите единицу измерения частоты:" +
+              "\n1) Гц;\n2) кГц;\n3) МГц;\n4) ГГц;\n5) ТГц;\n6) ПГц\n")
 
-        value = input()
-        if value == '1':
-            self.Frequency = "HZ"
-        if value == '2':
-            self.Frequency = "KHZ"
-        if value == '3':
-            self.Frequency = "MHZ"
-        if value == '4':
-            self.Frequency = "GHZ"
-        if value == '5':
-            self.Frequency = "THZ"
-        if value == '6':
-            self.Frequency = "HZ"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Resistance = "HZ"
+            case 2:
+                self.Resistance = "KHZ"
+            case 3:
+                self.Resistance = "MHZ"
+            case 4:
+                self.Resistance = "GHZ"
+            case 5:
+                self.Resistance = "THZ"
+            case 6:
+                self.Resistance = "PHZ"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeFrequencyUnit()
 
     def ChangeInductivityUnit(self):
-        print("\nChoose inductivity unit:" +
-            "\n1) H;\n2) MH;\n3) UH;\n4) NH;\n5) PH\n6) FH")
+        print("\n\nВыберите единицу измерения индуктивности:" +
+            "\n1) Гн;\n2) мГн;\n3) мкГн;\n4) нГн;\n5) пГн\n6) фГн\n")
 
-        value = input()
-        if value == '1':
-            self.Inductance = "H"
-        if value == '2':
-            self.Inductance = "MH"
-        if value == '3':
-            self.Inductance = "UH"
-        if value == '4':
-            self.Inductance = "NH"
-        if value == '5':    
-            self.Inductance = "PH"
-        if value == '6':     
-            self.Inductance = "FH"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Resistance = "H"
+            case 2:
+                self.Resistance = "MH"
+            case 3:
+                self.Resistance = "UH"
+            case 4:
+                self.Resistance = "NH"
+            case 5:
+                self.Resistance = "PH"
+            case 6:
+                self.Resistance = "FH"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeInductivityUnit()
 
     def ChangeLenghtUnit(self):
-        print("\nChoose lenght unit:" +
-            "\n1) MIL;\n2) UM;\n3) MM;\n4) CM;\n5) IN\n6) M\n7) FT")
-
-        value = input()
-        if value == '1':
-            self.Lenght = "MIL"
-        if value == '2':
-            self.Lenght = "UM"
-        if value == '3':
-            self.Lenght = "MM"
-        if value == '4':
-            self.Lenght = "CM"
-        if value == '5':
-            self.Lenght = "IN"
-        if value == '6':
-            self.Lenght = "M"
-        if value == '7':
-            self.Lenght = "FT"
+        print("\nВыберите единицу измерения расстояния:" +
+            "\n1) мил;\n2) мкм;\n3) мм;\n4) см;\n5) дюйм\n6) метр\n7) фут\n")
+        
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Resistance = "MIL"
+            case 2:
+                self.Resistance = "UM"
+            case 3:
+                self.Resistance = "MM"
+            case 4:
+                self.Resistance = "CM"
+            case 5:
+                self.Resistance = "IN"
+            case 6:
+                self.Resistance = "M"
+            case 7:
+                self.Resistance = "FT"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeLenghtUnit()
 
     def ChangeResistanceUnit(self):
-        print("\nChoose resistance unit:" +
-            "\n1) WOH;\n2) OH;\n3) KOH;\n4) MOH;\n5) GOH\n6) TOH")
+        print("\nВыберите единицу измерения сопротивления:" +
+            "\n1) мОм;\n2) Ом;\n3) кОм;\n4) МОм;\n5) ГОм\n6) ТОм\n")
 
-        value = input()
-        if value == '1':
-            self.Resistance = "WOH"
-        if value == '2':
-            self.Resistance = "OH"
-        if value == '3':
-            self.Resistance = "KOH"
-        if value == '4':
-            self.Resistance = "MOH"
-        if value == '5':
-            self.Resistance = "GOH"
-        if value == '6':
-            self.Resistance = "TOH"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Resistance = "WOH"
+            case 2:
+                self.Resistance = "OH"
+            case 3:
+                self.Resistance = "KOH"
+            case 4:
+                self.Resistance = "MOH"
+            case 5:
+                self.Resistance = "GOH"
+            case 6:
+                self.Resistance = "TOH"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeResistanceUnit()
+
+    def ChangeCapacitanceUnit(self):
+        print("\nВыберите единицу измерения емкости:" + 
+              "\n1) Ф; \n2) мФ;\n3) мкФ;\n4) нФ;\n5) пФ;\n6) фФ\n")
+
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Capacity = "F"
+            case 2:
+                self.Capacity = "MF"
+            case 3:
+                self.Capacity = "UF"
+            case 4:
+                self.Capacity = "NF"
+            case 5:
+                self.Capacity = "PF"
+            case 6:
+                self.Capacity = "FF"               
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeCapacitanceUnit()
 
     def ShowDimensionsBlock(self):
         print("\nDIM", 
@@ -157,4 +194,4 @@ class DimensionsBlock:
             "\nIND ", self.Inductance, 
             "\nLNG ", self.Lenght, 
             "\nRES ", self.Resistance, 
-            "\nEND DIM")
+            "\nEND DIM\n")

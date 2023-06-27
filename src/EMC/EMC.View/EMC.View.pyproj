@@ -25,12 +25,13 @@
     <Compile Include="Collector.py" />
     <Compile Include="ControlBlock.py" />
     <Compile Include="DimensionsBlock.py" />
-    <Compile Include="ClassFileOutBlock.py" />
+    <Compile Include="FileOut.py" />
     <Compile Include="EMC.View.py" />
-    <Compile Include="Freq.py" />
+    <Compile Include="Frequency.py" />
     <Compile Include="Geometry.py" />
     <Compile Include="GeometryBox.py" />
     <Compile Include="DielectricLayer.py" />
+    <Compile Include="Polygon.py" />
     <Compile Include="Port.py" />
     <Compile Include="TechnologyLayer.py" />
   </ItemGroup>

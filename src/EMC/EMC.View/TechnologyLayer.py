@@ -182,23 +182,23 @@ class TechnologyLayer:
         self.__edgemesh = edgemesh
 
 
-    def ShowTechnologyLayer(self):
-        print("TECHLAY " + 
-              str(self.LayType) + " " +
-              str(self.LayName1) + " " +
-              str(self.LayName2) + " " +
-              str(self.Mapping) + " " +
-              str(self.Type) + " " +
-              str(self.ILevel) + " " +
-              str(self.NVertices) + " " +
-              str(self.MType) + " " +
-              str(self.FillType) + " " +
-              str(self.DebugId) + " " +
-              str(self.XMin) + " " +
-              str(self.YMin) + " " +
-              str(self.XMax) + " " +
-              str(self.YMax) + " " +
-              str(self.ConMax) + " " +
-              str(self.Res1) + " " +
-              str(self.Res2) + " " +
-              str(self.Edgemesh) + " ")
+    def GetTechnologyLayerString(self):
+        return("TECHLAY " + 
+              self.LayType + " " +
+              self.LayName1 + " " +
+              self.LayName2 + " " +
+              self.Mapping + " " +
+              self.Type + "\n" +
+              self.ILevel + " " +
+              self.NVertices + " " +
+              self.MType + " " +
+              self.FillType + " " +
+              self.DebugId + " " +
+              self.XMin + " " +
+              self.YMin + " " +
+              self.XMax + " " +
+              self.YMax + " " +
+              self.ConMax + " " +
+              self.Res1 + " " +
+              self.Res2 + " " +
+              self.Edgemesh + "\n")

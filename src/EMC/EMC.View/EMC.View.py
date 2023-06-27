@@ -3,139 +3,155 @@ from DimensionsBlock import DimensionsBlock
 from ClassHeader import Header
 from ControlBlock import ControlBlock
 from Geometry import GeometryBlock
-from Freq import Frequency
+from Frequency import Frequency
+from FileOut import FileOut
 
 
-def MakeFile(startFreq,stopFreq):
+sonnetFile = FileOut()
 
-    header = Header("SL636c7473", "04/12/2023 21:17:59", "xgeom 18.53-Lite 04/12/2023 21:17:50", "sonnet 18.53-Lite", "01/17/2019 10:20:25", "01/17/2019 10:20:25", "")
-    dimensions = DimensionsBlock("DEG", "PF", "/OH", "GHZ", "NH", "MIL", "OH")
-    control = ControlBlock("VARSWP", "-d", "0", "2", "N")
-    geometry = GeometryBlock("Lossless" ,"0","SUP","0","0","0","0","Lossless" ,"0","SUP","0","0","0","0","","","","","0","250","U")
-    frequency = Frequency("Y","AY","ABS_ENTRY","","","-1","300")
-    frequency.Start = startFreq
-    frequency.Stop = stopFreq
-    dielectricLayers = ""
-    for i in range(len(geometry.defaultGeometryBox.dielectricLayers)):
-                dielectricLayers = dielectricLayers + "      " + geometry.defaultGeometryBox.dielectricLayers[i].Thickness + " " + geometry.defaultGeometryBox.dielectricLayers[i].Erel + " " + geometry.defaultGeometryBox.dielectricLayers[i].Mrel + " " + geometry.defaultGeometryBox.dielectricLayers[i].Eloss + " " + geometry.defaultGeometryBox.dielectricLayers[i].Mloss + " " + geometry.defaultGeometryBox.dielectricLayers[i].Esignma + " " + geometry.defaultGeometryBox.dielectricLayers[i].Nzpart + " \"" + geometry.defaultGeometryBox.dielectricLayers[i].Name + "\"\n"
+def MainMenu():    
+    option = -1
     
-    
-    lines = ["FTYP SONPROJ 19 ! Sonnet Project File",
-             "\nVER 18.53",
-             "\nHEADER",
-             "\nLIC " + header.Getlicense(),
-             "\nDAT " + header.GetDate(),
-             "\nBUILT_BY_CREATED " + header.GetbuiltByCreated(),
-             "\nBUILT_BY_SAVED " + header.GetbuiltBySaved(),
-             "\nMDATE " + header.GetmDate(),
-             "\nHDATE " + header.GethDate(),
-             "\nEND HEADER",
-             "\nDIM",
-             "\nANG " + dimensions.Angle,
-             "\nCAP " + dimensions.Capacity,
-             "\nCON " + dimensions.Conductance,
-             "\nFREQ " + dimensions.Frequency,
-             "\nIND " + dimensions.Inductance,
-             "\nLNG " + dimensions.Lenght,
-             "\nRES " + dimensions.Resistance,
-             "\nEND DIM",
-             "\nCONTROL",
-             "\n" + control.Varswp,
-             "\nOPTIONS " + control.Options,
-             "\nSPEED " + control.Speed,
-             "\nCACHE_ABS " + control.CacheABS,
-             "\nQ_ACC " + control.QAcc,
-             "\nEND CONTROL",
-             "\nGEO",
-             "\nTMET \"" + geometry.NameTMET + "\" " + geometry.PatternIdTMET + " " + geometry.TypeTMET + " " + geometry.Value1TMET + " " + geometry.Value2TMET + " " + geometry.Value3TMET + " " + geometry.Value4TMET,
-             "\nBMET \"" + geometry.NameBMET + "\" " + geometry.PatternIdBMET + " " + geometry.TypeTMET + " " + geometry.Value1BMET + " " + geometry.Value2BMET + " " + geometry.Value3BMET + " " + geometry.Value4BMET,
-             "\nBOX 1 350 250 70 50 20 0",
-             "\n" + dielectricLayers,
-             "TECHLAY " + geometry.defaultTechnologyLayer.LayType + " " + geometry.defaultTechnologyLayer.LayName1 + " " + geometry.defaultTechnologyLayer.LayName2 + " " + geometry.defaultTechnologyLayer.Mapping + " " + geometry.defaultTechnologyLayer.Type + "\n" + geometry.defaultTechnologyLayer.ILevel, 
-             " " + geometry.defaultTechnologyLayer.NVertices + " " + geometry.defaultTechnologyLayer.MType + " " + geometry.defaultTechnologyLayer.FillType + " " + geometry.defaultTechnologyLayer.DebugId + " " + geometry.defaultTechnologyLayer.XMin + " " + geometry.defaultTechnologyLayer.YMin, 
-             " " + geometry.defaultTechnologyLayer.XMax + " " + geometry.defaultTechnologyLayer.YMax + " " + geometry.defaultTechnologyLayer.ConMax + " " + geometry.defaultTechnologyLayer.Res1 + " " + geometry.defaultTechnologyLayer.Res2 + " " + geometry.defaultTechnologyLayer.Edgemesh,
-             "\nEND",
-             "\nEND",
-             "\nLORGN " + geometry.X + " " + geometry.Y + " " + geometry.UL,
-             "\nPOR1 " + geometry.port1.Type,
-             "\nPOLY " + geometry.port1.IPolygon + " " + geometry.port1.NumPoints,
-             "\n" + geometry.port1.IVertex + "\n" + geometry.port1.PortNum + " " + geometry.port1.Resist + " " + geometry.port1.React + " " + geometry.port1.Induct + " " + geometry.port1.Capac + " " + geometry.port1.XCoord + " " + geometry.port1.YCoord, 
-             "\nNUM " + "1",
-             "\n" + "0 " + "5 " + "-1 " + "N " + "47 " + "1 " + "1 " + "100 " + "100 " + "0 " + "0 " + "0 " + "Y", 
-             "\nTLAYNAM Metal1 INH",
-             "\n0 0 \n120 0 \n120 50 \n0 50 \n0 0"
-             "\nEND",
-             "\nEND GEO",
-             "\nOPT",
-             "\nMAX 100",
-             "\nEND OPT",
-             "\nVARSWP",
-             "\nENABLED Y",
-             "\nFREQ "+ frequency.Y + " "+frequency.AY+" "+frequency.ABSENTRY+" "+frequency.Start+" "+frequency.Stop+" "+frequency.Defelaut+" "+frequency.TargetFrequency,
-             "\nEND",
-             "\nEND VARSWP"
-             ]
+    while option != 0:
+        print("1. Параметры блока единиц измерения\n" + 
+              "2. Параметры блока управления\n" + 
+              "3. Параметры блока геометрии\n" + 
+              "4. Изменить частоты моделирования\n" +
+              "5. Запустить моделирование\n" + 
+              "0. Выход\n")
+        option = int(input("Выберите действие -> "))
 
-    makeDirPath = 'C://'
-    makeDirPathcommand = 'md temp'
-    
-    os.chdir(makeDirPath)
-    os.system(makeDirPathcommand)
+        match option:
+            case 0:
+                print("\nВыход из программы ...")
+            case 1:
+                DimensionsBlockMenu()
+            case 2:
+                ControlBlockMenu()
+            case 3:
+                GeometryBlockMenu()
+            case 4:
+                sonnetFile.frequency.ShowFrequency()
+                sonnetFile.frequency.ChangeSweepType()
+            case 5:
+                if sonnetFile.geometry.numberOfPorts == 0:
+                    print("Невозможно запустить моделирование. " + 
+                          "В проекте отсутствуют порты.")
+                else:
+                    sonnetFile.MakeFile()
+            case _:
+                print("\nДействие выбрано неверно.")
+  
 
-    with open(r"C:\temp\example.son", "w") as f:   
-        f.writelines(lines)
-    
-    path = 'D://New Folder//bin'
-    command = 'em -v C://temp//example.son'
+def DimensionsBlockMenu():
+    option = -1
+     
+    while option != 0:
+        print("1. Изменить единицу измерения емкости\n" + 
+              "2. Изменить единицу измерения частоты\n" + 
+              "3. Изменить единицу измерения индуктивности\n" + 
+              "4. Изменить единицу измерения длины\n" + 
+              "5. Изменить единицу измерения сопротивления\n" + 
+              "6. Показать параметры блока\n" + 
+              "0. Вернуться в главное меню\n")
+        option = int(input("Выберите действие -> "))
 
-    os.chdir(path)
-    os.system(command)
+        match option:
+            case 0:
+                print("\nВозвращение в главное меню ...")
+            case 1:
+                sonnetFile.dimensions.ChangeCapacitanceUnit()
+            case 2:
+                sonnetFile.dimensions.ChangeFrequencyUnit()
+            case 3:
+                sonnetFile.dimensions.ChangeInductivityUnit()
+            case 4:
+                sonnetFile.dimensions.ChangeLenghtUnit()
+            case 5:
+                sonnetFile.dimensions.ChangeResistanceUnit()
+            case 6:
+                sonnetFile.dimensions.ShowDimensionsBlock()
+            case _:
+                print("\nДействие выбрано неверно.")
 
+def ControlBlockMenu():
+    option = -1
+     
+    while option != 0:
+        print("1. Изменить единицу измерения емкости\n" + 
+              "2. Изменить единицу измерения частоты\n" + 
+              "3. Изменить единицу измерения индуктивности\n" + 
+              "4. Использование Q-фактора точности\n" + 
+              "5. Показать параметры блока\n" + 
+              "0. Вернуться в главное меню\n")
+        option = int(input("Выберите действие -> "))
 
-def Menu():
-    print("[1] Задать частоты моделирования 1")
-    print("[2] Провести моделирование 2")
-    print("[0] Выход")
+        match option:
+            case 0:
+                print("\nВозвращение в главное меню ...")
+            case 1:
+                sonnetFile.control.ChangeOptions()
+            case 2:        
+                sonnetFile.control.ChangeSpeed()
+            case 3:        
+                sonnetFile.control.ChangeCacheABS()
+            case 4:        
+                sonnetFile.control.ChangeQAcc()
+            case 5:        
+                sonnetFile.control.ShowControlBlock()
+            case _:
+                print("\nДействие выбрано неверно.")
 
-Menu()
-option = int(input("Выберите опцию: "))
+def GeometryBlockMenu():
+    option = -1
+     
+    while option != 0:
+        print("1. Добавление диэлектрического слоя\n" + 
+              "2. Добавление технологического слоя\n" + 
+              "3. Добавление полигона\n" + 
+              "4. Добавление порта\n" + 
+              "5. Удаление диэлектрического слоя\n" +
+              "6. Удаление технологического слоя\n" +
+              "7. Удаление полигона\n" +
+              "8. Удаление порта\n" +
+              "9. Показать параметры блока\n" +
+              "0. Вернуться в главное меню\n")
+        option = int(input("Выберите действие -> "))
 
-while option != 0:
-    if option == 1:
-        startFreq = (input("Выберите начальную частоту: "))
-        stopFreq = (input("Выберите Конечную чатоту: "))
-        pass
-    elif option == 2:
-        MakeFile(startFreq,stopFreq)
-        pass
-    else:
-        print("Такой опции нет")
+        match option:
+            case 0:
+                print("\nВозвращение в главное меню ...")
+            case 1:
+                sonnetFile.geometry.AddDielectricLayer()
+            case 2:        
+                sonnetFile.geometry.AddTechnologyLayer()
+            case 3:        
+                sonnetFile.geometry.AddPolygon()
+            case 4:        
+                sonnetFile.geometry.AddPort()
+            case 5: 
+                if sonnetFile.geometry.numberOfPorts == 0:
+                    print("В проекте нет диэлектрических слоев.")
+                else:
+                    sonnetFile.geometry.RemoveDielectricLayer()
+            case 6:
+                if len(sonnetFile.geometry.TechnologyLayers) == 0:
+                    print("В проекте нет технологических слоев.")
+                else:
+                    sonnetFile.geometry.RemoveTechnologyLayer()
+            case 7:
+                if sonnetFile.geometry.numberOfPolygons == 0:
+                    print("В проекте нет полигонов.")
+                else:
+                    sonnetFile.geometry.RemovePolygon()
+            case 8:
+                if sonnetFile.geometry.numberOfPorts == 0:
+                    print("В проекте нет портов.")
+                else:
+                    sonnetFile.geometry.RemovePort()
+            case 9:
+                sonnetFile.geometry.ShowGeometryBlock()
+            case _:
+                print("\nДействие выбрано неверно.")
 
-    Menu()
-    option = int(input("Выберите опцию: "))
-
-print("Выход из программы ...")
-
-
-
-
-
-
-
-
-#with open(r"C:\temp\example.son", "w") as f:   
-#    f.writelines(lines)
-#
-#path = 'C://Program Files//Sonnet Software//18.53//bin'
-#
-#command = 'em -v C://temp//example.son'
-#
-#makeDirPath = 'C://'
-#
-#makeDirPathcommand = 'md temp'
-#
-#os.chdir(makeDirPath)
-#os.system('md temp')
-#
-#os.chdir(path)
-#os.system(command)
+MainMenu()

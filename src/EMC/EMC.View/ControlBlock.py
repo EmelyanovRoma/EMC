@@ -1,4 +1,4 @@
-class ControlBlock:
+﻿class ControlBlock:
     def __init__(self, varswp, options, speed, cacheABS, qAcc):
         self.__varswp = varswp
         self.__options = options
@@ -53,69 +53,85 @@ class ControlBlock:
 
 
     def ChangeOptions(self):
-        print("\nChoose analysis control options:" +
-              "\n1) Generate Current Density;" +
-              "\n2) Multi-Frequency Caching;" + 
-              "\n3) Memory Saver;" + 
-              "\n4) Box Resonance;" +
+        print("\nВыберите параметр управления анализом:" +
+              "\n1) Генерация плотности тока;" +
+              "\n2) Многочастотное кэширование;" + 
+              "\n3) Экономия памяти;" + 
+              "\n4) Резонирующая коробка;" +
               "\n5) De-embedding.")
 
-        value = input()
-        if value == '1':
-            self.Options = "-j"
-        if value == '2':
-            self.Options = "-A"
-        if value == '3':
-            self.Options = "-m"
-        if value == '4':
-            self.Options = "-b"
-        if value == '5':    
-            self.Options = "-d"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Options = "-j"
+            case 2:
+                self.Options = "-A"
+            case 3:
+                self.Options = "-m"
+            case 4:
+                self.Options = "-b"
+            case 5:
+                self.Options = "-d"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeOptions()
 
     def ChangeSpeed(self):
-        print("\nChoose analysis speed/memory control:" + 
+        print("\nВыберите скорость анализа/управления памятью:" + 
               "\n1) Fine/Edge Meshing (Left on Slider);" + 
               "\n2) Coarse/Edge Meshing (Middle on Slider);" + 
               "\n3) Coarse/No Edge Meshing (Right on Slider).")
 
-        value = input()
-        if value == '1':
-            self.Speed = "0"
-        if value == '2':
-            self.Speed = "1"
-        if value == '3':
-            self.Speed = "2"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.Speed = "0"
+            case 2:
+                self.Speed = "1"
+            case 3:
+                self.Speed = "2"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeSpeed()
 
     def ChangeCacheABS(self):
-        print("\nChoose ABS caching level:" + 
-              "\n1) None;" + 
-              "\n2) Stop/Restart;" + 
-              "\n3) Multi-sweep plus Stop/Restart.")
+        print("\nВыберите уровень ABS кэширования:" + 
+              "\n1) Нет;" + 
+              "\n2) Стоп/Перезагрузка;" + 
+              "\n3) Мультиразвертка и Стоп/Перезагрузка.\n")
 
-        value = input()
-        if value == '1':
-            self.Speed = "0"
-        if value == '2':
-            self.Speed = "1"
-        if value == '3':
-            self.Speed = "2"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.CacheABS = "0"
+            case 2:
+                self.CacheABS = "1"
+            case 3:
+                self.CacheABS = "2"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeCacheABS()
 
     def ChangeQAcc(self):
-        print("\nChoose Q-Factor Accuracy:" + 
-              "\n1) Yes;" + 
-              "\n2) No.")
+        print("\nБудет ли использоваться Q-фактор точности?" + 
+              "\n1) Да;" + 
+              "\n2) Нет.\n")
 
-        value = input()
-        if value == '1':
-            self.Speed = "Y"
-        if value == '2':
-            self.Speed = "N"
+        value = int(input("-> "))
+        match value:
+            case 1:
+                self.QAcc = "Y"
+            case 2:
+                self.QAcc = "N"
+            case _:
+                print("\nЗначение введено неверно.")
+                self.ChangeQAcc()
 
     def ShowControlBlock(self):
-        print("\nCONTROL", 
-            "\n", self.Varswp, 
-            "\nOPTIONS ", self.Options, 
-            "\nSPEED ", self.Speed, 
-            "\nCACHE_ABS ", self.CacheABS,  
-            "\nQ_ACC ", self.QAcc, 
-            "\nEND CONTROL")
+        print("\nCONTROL\n", 
+              self.Varswp, 
+              "\nOPTIONS ", self.Options, 
+              "\nSPEED ", self.Speed, 
+              "\nCACHE_ABS ", self.CacheABS,  
+              "\nQ_ACC ", self.QAcc, 
+              "\nEND CONTROL\n")

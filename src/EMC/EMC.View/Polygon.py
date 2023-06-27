@@ -1,6 +1,6 @@
 class Polygon:
     def __init__(self, iLevel, nVertices, mType, fillType, debugId, xMin, 
-                 yMin, xMax, yMax, conMax, res1, res2, edgemesh, xVertices, yVertices):
+                 yMin, xMax, yMax, conMax, res1, res2, edgemesh, layName , xVertices, yVertices):
         self.__iLevel = iLevel
         self.__nVertices = nVertices
         self.__mType = mType
@@ -14,6 +14,7 @@ class Polygon:
         self.__res1 = res1
         self.__res2 = res2
         self.__edgemesh = edgemesh
+        self.__layName = layName
         self.__xVertices = xVertices
         self.__yVertices = yVertices
     
@@ -135,6 +136,15 @@ class Polygon:
 
 
     @property
+    def LayName(self):
+        return self.__layName
+
+    @LayName.setter
+    def LayName(self, layName):
+        self.__layName = layName
+
+
+    @property
     def XVertices(self):
         return self.__xVertices
 
@@ -152,19 +162,42 @@ class Polygon:
         self.__yVertices = yVertices
 
     def ShowPolygon(self):
-        print(str(self.ILevel) + " " +
-              str(self.NVertices) + " " +
-              str(self.MType) + " " +
-              str(self.FillType) + " " +
-              str(self.DebugId) + " " +
-              str(self.XMin) + " " +
-              str(self.YMin) + " " +
-              str(self.XMax) + " " +
-              str(self.YMax) + " " +
-              str(self.ConMax) + " " +
-              str(self.Res1) + " " +
-              str(self.Res2) + " " +
-              str(self.Edgemesh))
+        print(self.ILevel + " " +
+              self.NVertices + " " +
+              self.MType + " " +
+              self.FillType + " " +
+              self.DebugId + " " +
+              self.XMin + " " +
+              self.YMin + " " +
+              self.XMax + " " +
+              self.YMax + " " +
+              self.ConMax + " " +
+              self.Res1 + " " +
+              self.Res2 + " " +
+              self.Edgemesh + "\n" + 
+              "TLAYNAM " + self.LayName + "INH")
 
         for i in range(len(self.XVertices)):
-            print(str(self.XVertices[i]) + " " + str(self.YVertices[i]))
+            print(self.XVertices[i] + " " + self.YVertices[i])
+
+    def GetPolygonString(self):
+        coordinates = ""
+        for i in range(len(self.XVertices)):
+                coordinates += self.XVertices[i] + " "
+                coordinates += self.YVertices[i] + "\n"
+
+        return(self.ILevel + " " +
+              self.NVertices + " " +
+              self.MType + " " +
+              self.FillType + " " +
+              self.DebugId + " " +
+              self.XMin + " " +
+              self.YMin + " " +
+              self.XMax + " " +
+              self.YMax + " " +
+              self.ConMax + " " +
+              self.Res1 + " " +
+              self.Res2 + " " +
+              self.Edgemesh + "\n" + 
+              "TLAYNAM " + self.LayName + "INH\n" +
+              coordinates)

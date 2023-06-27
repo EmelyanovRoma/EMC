@@ -79,3 +79,14 @@ class DielectricLayer:
     @Name.setter
     def Name(self, name):
         self.__name = name
+
+
+    def GetDielectricLayerString(self):
+        return(self.Thickness +
+               " " + self.Erel +
+               " " + self.Mrel +
+               " " + self.Eloss +
+               " " + self.Mloss +
+               " " + self.Esignma +
+               " " + self.Nzpart +
+               " \"" + self.Name + "\"\n")
